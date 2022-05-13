@@ -8,19 +8,41 @@ const array = [
 ];
 
 function findCommonElement(arr){
-    let common = arr[0];
-    let overlap = [];
+    // const cache = {};
+    // let maxCount = 0;
+    // for(let subArr of arr){
+    //     for(let item of subArr){
+    //         if(cache.hasOwnProperty(item)){
+    //             cache[item]++;
+    //             if(cache[item] > maxCount){
+    //                 maxCount = cache[item];
+    //             }
+    //         } else {
+    //             cache[item] = 1;
+    //         }
+    //     }
+    // }
+
+    // const overlap = [];
+    // for(let key in cache){
+    //     if(cache[key] === array.length){
+    //         overlap.push(key);
+    //     }
+    // }
+
+    let overlap = arr[0];
+    let temp = [];
     for(let i=1; i<arr.length; i++){
-        for(let j=0; j<common.length; j++){
-            if(arr[i].includes(common[j])){
-                overlap.push(common[j]);
+        for(let item of arr[i]){
+            if(overlap.includes(item)){
+                temp.push(item);
             }
         }
-        common = overlap;
-        overlap = [];
+        overlap = temp;
+        temp = [];
     }
-    console.log(common);
-    return common;
+
+    console.log(overlap);
 }
 
 findCommonElement(array);

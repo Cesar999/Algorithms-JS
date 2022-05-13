@@ -2,10 +2,10 @@
 // Write a function that returns is a string is a palindrome.
 
 function isPalindrome(str){
-    const temp1 = str.toLowerCase().match(/\w/g).join('');
-    const temp2 = str.toLowerCase().match(/\w/g).reverse().join('');
-    console.log(temp1, temp2, temp1 === temp2);
-    return temp1 === temp2;
+    const str1 = str.toLowerCase().match(/[a-z]/g).join('').trim();
+    const str2 = str.toLowerCase().match(/[a-z]/g).reverse().join('').trim();
+    console.log(str1 === str2);
+    return str1 === str2;
 }
 
 const str1 = 'A nut for a jar of tuna!!'; // true

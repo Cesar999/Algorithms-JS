@@ -1,12 +1,11 @@
 // Function that prints a pyramid of '#' with 'n' floors
 
 function pyramid(n) {
+    let res = '';
     for(let i=0; i<n; i++){
-        let left = ' '.repeat(n-i) + '#'.repeat(i);
-        let right = '#'.repeat(i) + ' '.repeat(n-i);
-        let result =  left + '#' + right;
-        console.log(result);
+      res += '.'.repeat((n-i)) + '#'.repeat(i*2+1) + '.'.repeat((n-i)) + '\n';
     }
-}
-
-pyramid(5)
+    console.log(res);
+  }
+  
+  pyramid(5);

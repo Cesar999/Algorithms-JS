@@ -1,9 +1,20 @@
 function containsDuplicate(arr){
-    const set1 = new Set(arr);
-    console.log(set1.size !== arr.length);
-    return set1.size !== arr.length;
+    console.log(new Set(arr).size !== arr.length);
+    return new Set(arr).size !== arr.length;
+    
+    // const hashMap = {};
+    // for(let item of arr){
+    //     if(hashMap.hasOwnProperty(item)){
+    //         console.log(hashMap.hasOwnProperty(item));
+    //         return true;
+    //     } else {
+    //         hashMap[item] = true;
+    //     }
+    // }
+    // console.log(false);
+    // return false;
 }
 
-containsDuplicate([1, 2, 3, 4, 5, 1]);
-containsDuplicate([9, 8, 7, 6, 5, 5]);
-containsDuplicate([1, 2, 3, 7, 8, 9]);
+containsDuplicate([1, 2, 3, 4, 5, 1]); // true
+containsDuplicate([9, 8, 7, 6, 5, 5]); // true
+containsDuplicate([1, 2, 3, 7, 8, 9]); // false

@@ -1,7 +1,7 @@
 function sumatory(n){
-    const result = n * (n + 1) / 2;
-    console.log(result);
-    return result;
+    const res = n * (n + 1) / 2;
+    console.log(res);
+    return res;
 }
 
 sumatory(5);

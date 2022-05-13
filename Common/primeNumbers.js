@@ -8,17 +8,16 @@ function primeNumbers(n){
     const primes = [];
     let isPrime = true;
     for(let i=2; i<=n; i++){
+        isPrime = true;
         for(let j=2; j<i; j++){
-            if(i%j === 0){
+            if(i%j===0){
                 isPrime = false;
+                break;
             }
         }
         if(isPrime){
             primes.push(i);
-        } else {
-            isPrime = true;
         }
-        
     }
     console.log(primes);
     return primes;

@@ -1,53 +1,59 @@
 class Node {
-    constructor(value){
-        this.value = value;
+    constructor(val){
+        this.val = val;
         this.next = null;
     }
 }
 
 class Queue {
     constructor(){
-        this.firstNode = null;
-        this.lastNode = null;
-        this.length = 0;
+        this.first = null;
+        this.last = null;
+        this.size = 0;
     }
 
     enqueue(val){
         const newNode = new Node(val);
-        if(!this.firstNode){
-            this.firstNode = newNode;
-            this.lastNode = newNode;
+        if(this.first === null){
+            this.first = newNode;
+            this.last = newNode;
         } else {
-            this.lastNode.next = newNode;
-            this.lastNode = newNode;
+            newNode.next = this.last;
+            this.last = newNode;
         }
-        this.length++;
-        return newNode.val;
+        this.size++;
     }
 
     dequeue(){
-        if(!this.firstNode){
-            return null;
-        }
-        const prevFirstNode = this.firstNode;
-        if(this.firstNode === this.lastNode){
-            this.lastNode = null;
-        }
-        this.firstNode = this.firstNode.next;
-        this.length--;
-        return prevFirstNode.value;
+        let current = this.last;
+        let next = current.next;
+        while(next.next){
+            current = current.next;
+            next = current.next;
+        }  
+        current.next = null;
+        this.first = current;
+        this.size--;
     }
 
-    first(){
-        return this.firstNode.value;
+    traverse(){
+        let current = this.last;
+        while(current){
+            console.log(current.val);
+            current = current.next;
+        }  
     }
 
-    last(){
-        return this.lastNode.value;
+    getSize(){
+        return this.size;
     }
 
-    size(){
-        return this.length;
+    getFirst(){
+        return this.first.val;
+    }
+
+    getLast(){
+        return this.last.val;
     }
 
 }
@@ -56,15 +62,13 @@ const queue = new Queue();
 queue.enqueue('A');
 queue.enqueue('B');
 queue.enqueue('C');
-queue.enqueue('X');
-queue.enqueue('Y');
-queue.enqueue('Z');
-console.log(queue.first());
-console.log(queue.last());
-console.log(queue.size());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.first());
-console.log(queue.last());
-console.log(queue.size());
+queue.enqueue('D');
+queue.enqueue('E');
+queue.traverse();
+console.log('---');
+queue.dequeue();
+queue.traverse();
+console.log('---');
+console.log(queue.getFirst());
+console.log(queue.getLast());
+console.log(queue.getSize());

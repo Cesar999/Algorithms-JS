@@ -1,26 +1,27 @@
 // function that prints the valid combinations of n pairs of parenthesis
 
-const combinations = [];
+function parenthesisCombination(n){
+    const combinations = [];
 
-function parenthesisCombination(n, arr=[], pos=0, open=0, close=0){
-    if(close === n) {
-        let temp = '';
-        for(let item of arr){
-            temp += item;
+    function recursiveCombination(n, arr=[], pos=0, open=0, close=0){
+        if(close === n){
+            combinations.push(arr.join(''));
+        } else {
+            if(open > close){
+                arr[pos]=(')');
+                recursiveCombination(n, arr, pos+1, open, close+1);
+            }
+            if(open < n){
+                arr[pos]=('(');
+                recursiveCombination(n, arr, pos+1, open+1, close);
+            }
         }
-        combinations.push(temp);
-    } else {
-        if(open>close){
-            arr[pos] = ') ';
-            parenthesisCombination(n, arr, pos+1, open, close+1);
-        }
-        if(open<n){
-            arr[pos] = ' (';
-            parenthesisCombination(n, arr, pos+1, open+1, close);
-        }
+
+        return combinations;
     }
-    return null;
+
+    return recursiveCombination(n);
+
 }
 
-parenthesisCombination(3);
-console.log(combinations);
+console.table(parenthesisCombination(3));

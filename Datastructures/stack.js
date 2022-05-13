@@ -1,54 +1,52 @@
 class Node {
     constructor(val){
-        this.value = val;
-        this.prev = null;
+        this.val = val;
+        this.next = null;
     }
 }
 
 class Stack {
     constructor(){
-        this.bottomNode = null;
-        this.topNode = null;
-        this.length = 0;
+        this.top = null;
+        this.bottom = null;
+        this.size = 0;
     }
 
-    push(value) {
-        const newNode = new Node(value);
-        if(!this.bottomNode){
-            this.bottomNode = newNode;
-            this.topNode = newNode;
+    push(val){
+        const newNode = new Node(val);
+        if(this.bottom === null){
+            this.top = newNode;
+            this.bottom = newNode;
         } else {
-            newNode.prev = this.topNode;
-            this.topNode = newNode;
+            newNode.next = this.top;
+            this.top = newNode;
         }
-        this.length++;
-        return newNode.value;
+        this.size++;
     }
 
     pop(){
-        if(!this.bottomNode){
-            return null;
-        }
-        const prevTopNode = this.topNode;
-        if(this.bottomNode === this.topNode) {
-            this.bottomNode = null;
-        }
-        this.topNode = this.topNode.prev;
-        this.length--;
-        return prevTopNode.value;
+        this.top = this.top.next;
+        this.size--;
     }
 
+    traverse(){
+        let current = this.top;
+        while(current){
+            console.log(current.val);
+            current = current.next;
+        }
+    }
     
-    top(){
-        return this.topNode.value;
+    getTop(){
+        return this.top.val;
     }
 
-    bottom(){
-        return this.bottomNode.value;
+    getBottom(){
+        return this.bottom.val;
     }
 
-    size(){
-        return this.length;
+    getSize(){
+        return this.size;
     }
 
 }
@@ -57,15 +55,13 @@ const stack = new Stack();
 stack.push('A');
 stack.push('B');
 stack.push('C');
-stack.push('X');
-stack.push('Y');
-stack.push('Z');
-console.log(stack.top());
-console.log(stack.bottom());
-console.log(stack.size());
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.top());
-console.log(stack.bottom());
-console.log(stack.size());
+stack.push('D');
+stack.push('E');
+stack.traverse();
+console.log('---');
+stack.pop();
+stack.traverse();
+console.log('---');
+console.log(stack.getTop());
+console.log(stack.getBottom());
+console.log(stack.getSize());

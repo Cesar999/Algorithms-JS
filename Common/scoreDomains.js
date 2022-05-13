@@ -11,37 +11,38 @@ const counts = [
 ];
 
 function format(data){
+
     const urls = data.map(item => {
-        const temp = item.split(',');
+        const [value, domain] = item.split(',');
         return {
-            count: parseInt(temp[0]),
-            string: temp[1]
+            value: parseInt(value),
+            domain
         }
     });
 
-    const map = {};
+    const result = {};
+    
     for(let url of urls){
-        const domains = url.string.split('.');
+        const domain = url.domain.split('.');
+        const value = url.value;
         let temp = '';
+        for(let i=domain.length-1; i>=0; i--){
 
-        for(let i=domains.length-1; i>=0; i--){
-            temp = domains[i] + (i===domains.length-1?'':'.') + temp;
+            temp = i === domain.length-1 ? domain[i] : domain[i] + '.' + temp;
 
-            if(!map[temp]){
-                map[temp] = url.count;
+            if(result.hasOwnProperty(temp)){
+                result[temp] += value;
             } else {
-                map[temp] += url.count;
+                result[temp] = value;
             }
-
         }
-        
     }
 
-    console.log(map);
-
+    console.log(result)
 }
 
 format(counts);
+
 
 // 1320 - com
 // 900 - google.com

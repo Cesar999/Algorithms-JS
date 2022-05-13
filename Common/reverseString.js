@@ -1,7 +1,7 @@
 function reverseString(str){
-    const revStr = str.split('').reverse().join('');
-    console.log(revStr);
-    return revStr;
+    const reverseStr = str.split('').reverse().join('');
+    console.log(reverseStr);
+    return reverseStr;
 }
 
 reverseString('Cesar Roberto Encinas Realivazquez');

@@ -1,23 +1,21 @@
 
-function firstUnique(str){
-    const map = {};
-    for(let char of str){
-        if(!map[char]){
-            map[char] = 1;
+function firstUnique(arr){
+    const map = new Map();
+    for(let num of arr){
+        if(map.has(num)){
+            map.set(num, map.get(num)+1);
         } else {
-            map[char] += 1;
+            map.set(num, 1);
         }
     }
 
-    for(let i=0; i<str.length; i++){
-        const char = str[i];
-        if(map[char]===1){
-            console.log(char);
-            return char;
+    for(let item of map){
+        const [key, value] = item;
+        if(value === 1){
+            return key;
         }
     }
-    
-    console.log(null);
+
     return null;
 }
 

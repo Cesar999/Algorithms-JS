@@ -2,15 +2,15 @@
 // Function that returns is two strings are anagrams.
 
 function isAnagram(str1, str2){
-    const s1 = str1.toLowerCase().split('').sort().join('').trim();
-    const s2 = str2.toLowerCase().split('').sort().join('').trim();
-    console.log(s1, s2, s1 === s2);
-    return s1 === s2;
+    const temp1 = str1.toLowerCase().match(/[a-z]/g).sort().join('');
+    const temp2 = str2.toLowerCase().match(/[a-z]/g).sort().join('');
+    console.log(temp1 === temp2);
+    return temp1 === temp2;
 }
 
 isAnagram('The Morse Code', 'Here comes dots'); // false
 isAnagram('Eleven plus two', 'Twelve plus one'); // true
-isAnagram('Slot machines', 'Cash lost in me'); // false
+isAnagram('Slot machines', 'Cash lost in me'); // true
 isAnagram('rail safety', 'fairy tales'); // true
-isAnagram('RAIL! SAFETY', 'fairy tales'); // false
+isAnagram('RAIL! SAFETY', 'fairy tales'); // true
 isAnagram('Hi There', 'Bye There'); // false

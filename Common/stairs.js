@@ -1,9 +1,12 @@
 
 function stairs(num){
-    const char = '#';
-    for(let i=0; i<=num; i++){
-        console.log(char.repeat(i));
+    let res = '';
+    let temp = '';
+    for(let i=1; i<=num; i++){
+        temp = i<num?'\n':'';
+        res += '#'.repeat(i) + temp;
     }
+    console.log(res);
 }
 
-stairs(7)
+stairs(7);
